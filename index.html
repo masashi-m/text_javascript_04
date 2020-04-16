@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS_4.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="1-foreachfindfiltermap-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">1. foreach、find、filter、map メソッド</h1>
+<h2 id="%E2%97%86-%E9%85%8D%E5%88%97%E3%81%A8%E3%83%A6%E3%83%BC%E3%82%B6%E5%AE%9A%E7%BE%A9%E9%96%A2%E6%95%B0%E3%81%AE%E5%BE%A9%E7%BF%92">◆ 配列とユーザ定義関数の復習</h2>
+<p>これまで、配列のプロパティ、メソッドやユーザ定義関数<br>
+( function()、アロー関数) を学習しました。<br>
+本章では、これらを応用したメソッドを解説して行きます。</p>
+<h3 id="%E2%97%8F-%E9%85%8D%E5%88%97%E3%81%A8%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">● 配列とプロパティ、メソッド</h3>
+<p>配列の記述方法や、プロパティ及びメソッドの記述をおさらいしましょう。</p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを記述して、実行結果を確認しましょう。<br>
+※ なるべく自力でコードを記述しましょう。<br>
+> <a href="http://lite.runstant.com/" target="_blank">Runstant</a><br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment">//配列の基本構造</span>
+fruits = [<span class="hljs-string">"Apple"</span>, <span class="hljs-string">"Orange"</span>, <span class="hljs-string">"Banana"</span>];
+
+<span class="hljs-comment">//配列の長さを取得する</span>
+<span class="hljs-keyword">let</span> len = fruits.length;
+<span class="hljs-built_in">console</span>.log(len);
+
+<span class="hljs-comment">//末尾に要素を追加する</span>
+fruits.push(<span class="hljs-string">"grape"</span>);
+<span class="hljs-built_in">console</span>.log(fruits);
+
+<span class="hljs-comment">//連想配列(オブジェクト)</span>
+fruits_price = { <span class="hljs-attr">Apple</span>: <span class="hljs-number">100</span>, <span class="hljs-attr">Orange</span>: <span class="hljs-number">80</span>, <span class="hljs-attr">Banana</span>: <span class="hljs-number">50</span> };
+
+<span class="hljs-comment">//値の変更</span>
+fruits_price.Apple = <span class="hljs-number">120</span>;
+<span class="hljs-built_in">console</span>.log(fruits_price.Apple);
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-function%E3%81%A8%E3%82%A2%E3%83%AD%E3%83%BC%E9%96%A2%E6%95%B0">● function()とアロー関数</h3>
+<p>基本構造や retrun 文を確認しながら、各ユーザ定義関数をおさらいしましょう。</p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを記述して、実行結果を確認しましょう。<br>
+※ なるべく自力でコードを記述しましょう。
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment">//function()</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">plus_one</span>(<span class="hljs-params">num</span>) </span>{
+  <span class="hljs-keyword">return</span> num + <span class="hljs-number">1</span>;
+}
+<span class="hljs-built_in">console</span>.log(plus_one(<span class="hljs-number">1</span>));
+
+<span class="hljs-comment">//アロー関数</span>
+minus_one = <span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> num - <span class="hljs-number">1</span>;
+};
+<span class="hljs-built_in">console</span>.log(minus_one(<span class="hljs-number">2</span>));
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8Fforeach-%E6%96%87%E3%81%A8-callback-%E9%96%A2%E6%95%B0">●foreach 文と callback 関数</h3>
+<p>foreach 文は、データ群に対して 1 つずつ処理を実行する文です。<br>
+実行処理には、<mark>callback 関数</mark>という関数を使用します。<br>
+callback 関数とは、他の関数に<mark>引数として渡される関数</mark>を指します。</p>
+<p>基本的な構造は 以下の通りです。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//forEachと function()</span>
+配列名.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">callback引数</span>) </span>{
+  実行処理(callback引数);
+});
+
+<span class="hljs-comment">//forEachとアロー関数</span>
+配列.forEach(<span class="hljs-function">(<span class="hljs-params">callback引数</span>) =&gt;</span> {
+  実行処理(callback引数);
+});
+</div></code></pre>
+<p>forEach 文は、関数を値として渡す<mark>関数式</mark>を用いており、<br>
+function()やアロー関数を記述します。<br>
+この関数式に引数を渡すと、指定した配列から<br>
+1 つずつ要素を渡し、要素がなくなるまで処理を実行します。</p>
+<p>複雑ですので、演習から慣れて行きましょう。</p>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを記述し、実行結果を確認しましょう。<br>
+※ なるべく自力でコードを記述しましょう。
+</div>
+<pre class="hljs"><code><div>fruits = [<span class="hljs-string">"Apple"</span>, <span class="hljs-string">"Orange"</span>, <span class="hljs-string">"Banana"</span>];
+fruits.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">fruit</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(fruit);
+});
+
+vegitables = [<span class="hljs-string">"tomato"</span>, <span class="hljs-string">"potato"</span>, <span class="hljs-string">"onion"</span>];
+vegitables.forEach(<span class="hljs-function">(<span class="hljs-params">vegitable</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(vegitable);
+});
+</div></code></pre>
+<br>
+<img src="foreach.png">
+<p><br><br></p>
+<h3 id="%E2%97%8Ffindfiltermap-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">●find、filter、map メソッド</h3>
+<p>forEach 以外に、配列内の各データに対して<br>
+実行するメソッドを学んで行きましょう。</p>
+<blockquote>
+<p>・find：配列から特定の要素を 1 つ抜き出す<br>
+・filter：配列から任意の条件のものだけ取得する<br>
+・map：配列を加工して新しい配列を作成する<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 4</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+下記のコードを記述して、実行結果を確認しましょう。<br>
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment">//配列から 4を探す</span>
+numbers_1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+search_four = numbers_1.find(<span class="hljs-function">(<span class="hljs-params">number</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> number === <span class="hljs-number">4</span>;
+});
+<span class="hljs-built_in">console</span>.log(search_four);
+
+<span class="hljs-comment">//配列から偶数を出力する。</span>
+numbers_2 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>];
+even = numbers_2.filter(<span class="hljs-function">(<span class="hljs-params">number</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> number % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
+});
+<span class="hljs-built_in">console</span>.log(even);
+
+<span class="hljs-comment">//配列の値を 3倍にする。</span>
+numbers_3 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+threetimes = numbers_3.map(<span class="hljs-function">(<span class="hljs-params">number</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> number * <span class="hljs-number">3</span>;
+});
+<span class="hljs-built_in">console</span>.log(threetimes);
+</div></code></pre>
+<p><br><br><br></p>
+<h1 id="2-object-%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89">2. Object メソッド</h1>
+<h3 id="%E2%97%8Fjavascript-%E3%81%A8%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">●JavaScript とオブジェクト</h3>
+<p>オブジェクトとは、プロパティと値を持ったデータの事です。<br>
+現実世界の「物」に例えると、コップは白色で重さが何 g といった<br>
+プロパティとその値があります。同様に JavaScript のオブジェクトも<br>
+プロパティと値を所有する事になります。<br>
+(これまでに学んだ「配列」は、オブジェクトの 1 種です)</p>
+<br>
+<h3 id="%E2%97%8F-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E6%9B%B8%E3%81%8D%E6%96%B9">● オブジェクトの書き方</h3>
+<p>オブジェクトには複数の書き方があり、以下は主な記述方法です。</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//オブジェクト名の宣言</span>
+オブジェクト名 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();
+オブジェクト名.プロパティ = 値;
+</div></code></pre>
+<pre class="hljs"><code><div>オブジェクト名 = {
+  プロパティ: 値,
+};
+</div></code></pre>
+<p>それでは実際に書き方を練習しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、実行結果を確認しましょう。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> myCup = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();
+myCup.size = <span class="hljs-string">"small"</span>;
+myCup.color = <span class="hljs-string">"white"</span>;
+<span class="hljs-built_in">console</span>.log(myCup.color);
+<span class="hljs-comment">//console.log(myCup['color']); // でも可</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> person = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">"tanaka"</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">32</span>,
+  <span class="hljs-attr">interests</span>: [<span class="hljs-string">"music"</span>, <span class="hljs-string">"cooking"</span>],
+};
+<span class="hljs-built_in">console</span>.log(person.interests);
+<span class="hljs-comment">//console.log(person['interests']); //でも可</span>
+</div></code></pre>
+<p>ここからは、いくつかのオブジェクトと、それに対応する<br>
+プロパティやメソッドを学習して行きましょう。</p>
+<br>
+<h3 id="%E2%97%8F-%E3%82%AD%E3%83%BC%E3%82%84%E5%80%A4%E3%81%AE%E6%93%8D%E4%BD%9C">● キーや値の操作</h3>
+<blockquote>
+<p>Object.keys()：すべてのプロパティ名(keys)を返す<br>
+Object.values()：すべての値(values)を返す<br>
+Object.entries()：すべてのプロパティ名と値を返す<br></p>
+</blockquote>
+<p>上記のプロパティは、() の中に対象のオブジェクト名を記述します。
+<br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 </span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、実行結果を確認しましょう。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> numbers = { <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">c</span>: <span class="hljs-number">3</span> };
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.keys(numbers));
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.values(numbers));
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.entries(numbers));
+</div></code></pre>
+<p><br><br></p>
+<h3 id="%E2%97%8Fdate-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">●Date オブジェクト</h3>
+<p>日時に関する Date オブジェクトのメソッドを学んで行きましょう。</p>
+<blockquote>
+<p>new Date(); ：Date オブジェクトの生成<br>
+getFullYear()：年を 4 桁の整数で取得 <br>
+getMonth()：月を 0 ～ 11 で取得 → 0 が 1 月<br>
+getDate()：日を 0 ～ 31 で取得<br>
+getDay()：曜日を 0 ～ 6 で取得 → 0 が日曜日<br>
+getHours()：時間を 0 ～ 23 で取得<br>
+getMinutes()：分を 0 ～ 59 で取得<br>
+getSeconds()：秒を 0 ～ 59 で取得<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、実行結果を確認しましょう。
+</div>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> current = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+
+<span class="hljs-keyword">let</span> year = current.getFullYear();
+<span class="hljs-keyword">let</span> month = current.getMonth() + <span class="hljs-number">1</span>;
+<span class="hljs-keyword">let</span> day = current.getDate();
+
+<span class="hljs-keyword">let</span> week = current.getDay();
+<span class="hljs-keyword">let</span> weeks = [<span class="hljs-string">"日"</span>, <span class="hljs-string">"月"</span>, <span class="hljs-string">"火"</span>, <span class="hljs-string">"水"</span>, <span class="hljs-string">"木"</span>, <span class="hljs-string">"金"</span>, <span class="hljs-string">"土"</span>];
+<span class="hljs-keyword">let</span> w = weeks[week];
+
+<span class="hljs-keyword">let</span> hr = current.getHours();
+<span class="hljs-keyword">let</span> min = current.getMinutes();
+<span class="hljs-keyword">let</span> sec = current.getSeconds();
+
+<span class="hljs-built_in">console</span>.log(
+  year +
+    <span class="hljs-string">"年"</span> +
+    month +
+    <span class="hljs-string">"月"</span> +
+    day +
+    <span class="hljs-string">"日"</span> +
+    w +
+    <span class="hljs-string">"曜日"</span> +
+    hr +
+    <span class="hljs-string">"時"</span> +
+    min +
+    <span class="hljs-string">"分"</span> +
+    sec +
+    <span class="hljs-string">"秒"</span>
+);
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">//指定した日付間の経過日数を出力する</span>
+<span class="hljs-keyword">let</span> d1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2018</span>, <span class="hljs-number">9</span>, <span class="hljs-number">4</span>);
+<span class="hljs-keyword">let</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2019</span>, <span class="hljs-number">9</span>, <span class="hljs-number">21</span>);
+
+<span class="hljs-comment">//ミリ秒表示</span>
+<span class="hljs-built_in">console</span>.log(d2 - d1);
+<span class="hljs-comment">//日時表示</span>
+<span class="hljs-built_in">console</span>.log((d2 - d1) / (<span class="hljs-number">24</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span> * <span class="hljs-number">1000</span>));
+</div></code></pre>
+<p><br><br></p>
+<h3 id="%E2%97%8Fmath-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">●Math オブジェクト</h3>
+<p>数値処理に関するメソッドについて学習しましょう。</p>
+<blockquote>
+<p>Math.PI ：円周率を算出<br>
+Math.random()：0 ～ 0.9999...までの数値をランダムで出力<br>
+Math.floor()：小数点切り捨てで整数値に丸める<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、実行結果を確認しましょう。
+</div>
+<pre class="hljs"><code><div><span class="hljs-comment">//円周率の出力</span>
+<span class="hljs-keyword">let</span> pi = <span class="hljs-built_in">Math</span>.PI;
+<span class="hljs-built_in">console</span>.log(pi);
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">//サイコロの作成</span>
+<span class="hljs-keyword">let</span> rand1 = <span class="hljs-built_in">Math</span>.random();
+<span class="hljs-keyword">let</span> rand2 = rand1 * <span class="hljs-number">6</span> + <span class="hljs-number">1</span>;
+<span class="hljs-keyword">let</span> dice = <span class="hljs-built_in">Math</span>.floor(rand2);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"サイコロの目は"</span> + dice);
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8Fwindow-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">●Window オブジェクト</h3>
+<p>ウィンドウでダイアログ等を出す方法について学習していきます。<br>
+なお、window 部分は省略可能です。</p>
+<blockquote>
+<p>window.alert() ：アラートのウインドウを表示<br>
+window.confirm() ：確認のウインドウを表示<br>
+window.setTimeout() ：一定時間後に特定の処理をおこなう<br>
+window.setInterval ：一定時間ごとに特定の処理を繰り返す<br>
+window.clearInterval ：setInterval の処理を停止する<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 4</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、実行結果を確認しましょう。<br>
+(3番目の処理は無限ループのため、停止時は //clearInterval(id2); の<br>
+コメントアウトを外して、再度実行しましょう)
+</div>
+<pre class="hljs"><code><div><span class="hljs-built_in">window</span>.alert(<span class="hljs-string">"Hello"</span>);
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">//ウインドウ表示後、ボタンをクリック</span>
+<span class="hljs-keyword">let</span> result = <span class="hljs-built_in">window</span>.confirm(<span class="hljs-string">"この内容でよろしいですか"</span>);
+<span class="hljs-built_in">console</span>.log(result);
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">//Good Morningを 1秒後に 1度だけ表示</span>
+<span class="hljs-keyword">let</span> greeting = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Good Morning"</span>);
+};
+<span class="hljs-keyword">let</span> id1 = setTimeout(greeting, <span class="hljs-number">1000</span>);
+
+<span class="hljs-comment">//Wakeup!を 1.5秒毎に 繰り返し表示</span>
+<span class="hljs-keyword">let</span> calling = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Wakeup!"</span>);
+};
+<span class="hljs-keyword">let</span> id2 = setInterval(calling, <span class="hljs-number">1500</span>);
+
+<span class="hljs-comment">//id2の処理を削除する</span>
+<span class="hljs-comment">//clearInterval(id2);</span>
+</div></code></pre>
+<br>
+<h1 id="3-dom-1">3. DOM (1)</h1>
+<p>これまで、オブジェクトはプロパティと値を所有するデータであると学んで来ました。<br>
+HTML 要素もオブジェクトとして扱えるため、JavaScript で操作が可能となります。</p>
+<h2 id="%E2%97%86dom-%E3%81%A8%E3%81%AF">◆DOM とは</h2>
+<p>Document Object Model の略称で、HTML 等のファイルが持つ構造の事を指します。<br>
+下の図のように、HTML は windows オブジェクトの配下に連なるオブジェクトと<br>
+みなす事が出来るため、タグや属性に対してメソッドの指定が可能です。</p>
+<img src="domtree.png">
+<h3 id="%E2%97%8F-%E8%A6%81%E7%B4%A0%E3%81%AE%E5%8F%96%E5%BE%97">● 要素の取得</h3>
+<p>HTML ファイルのタグを指定し、メソッドを記述する事で<br>
+テキストなどのコンテンツを変更出来ます。<br>
+(jQuery で行ったファイルの DL や CDN の指定は不要です)</p>
+<blockquote>
+<p>querySelector()：指定したセレクタにマッチした最初の要素を返す<br>
+querySelectorAll()：指定したセレクタにマッチした要素のリストを返す<br>
+textContent：テキストの内容を取得<br></p>
+</blockquote>
+<p>getElement は、HTML の要素を取得するメソッドで、<br>
+id, class, タグを指定する事ができます。</p>
+<blockquote>
+<p>getElementById()：指定された ID の要素を取得<br>
+getElementsByTagName()：指定された タグ名の要素を取得<br>
+getElementsByClassName()：指定されたクラス名の要素を取得<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、表示された結果を確認しましょう。<br>
+また、今回は HTMLも記述するため、CodePenを利用します。<br>
+> <a href="https://codepen.io/" target="_blank">CodePen</a><br>
+</div>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>item<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>item<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>item<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>item<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"text"</span>&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//h1タグを指定して、テキストを書き換える</span>
+<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"h1"</span>).textContent = <span class="hljs-string">"New Title"</span>;
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">//liタグを指定して、テキストを書き換える</span>
+<span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">"li"</span>).forEach(<span class="hljs-function">(<span class="hljs-params">li</span>) =&gt;</span> {
+  li.textContent = <span class="hljs-string">"New item"</span>;
+});
+</div></code></pre>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"odd"</span>&gt;</span>リスト1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"even"</span>&gt;</span>リスト2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"odd"</span>&gt;</span>リスト3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"even"</span>&gt;</span>リスト4<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"odd"</span>&gt;</span>リスト5<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"even"</span>&gt;</span>リスト6<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//.length は該当する属性の数を取得するメソッド</span>
+<span class="hljs-comment">//以下 2つのメソッドは、1つずつ実行しましょう。</span>
+<span class="hljs-keyword">let</span> t = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">"li"</span>);
+alert(t.length);
+
+<span class="hljs-keyword">let</span> c = <span class="hljs-built_in">document</span>.getElementsByClassName(<span class="hljs-string">"odd"</span>);
+alert(c.length);
+</div></code></pre>
+<h3 id="%E2%97%8F-style-%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">● style プロパティ</h3>
+<p>CSS で指定するようなプロパティについても、<br>
+Javascript から指定が可能です。<br>
+下記は一例ですが、一部の文字が大文字に<br>
+なっている点に注意しましょう。<br>
+この部分が一致しないと反映されないため、<br>
+CSS の書き方と混ざらないよう注意しましょう。</p>
+<blockquote>
+<p>style.color：文字色を指定<br>
+style.backgroundColor：背景色を指定<br>
+style.fontSize：フォントサイズを指定<br>
+style.border：ボーダーを指定<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 2</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、表示された結果を確認しましょう。<br>
+※演習 1のコードは予め削除しておきましょう。
+</div>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//pタグのコンテンツに対して各プロパティ値を指定</span>
+<span class="hljs-keyword">const</span> p = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"p"</span>);
+p.style.color = <span class="hljs-string">"white"</span>;
+p.style.backgroundColor = <span class="hljs-string">"orange"</span>;
+p.style.fontSize = <span class="hljs-string">"50px"</span>;
+p.style.border = <span class="hljs-string">"3px solid blue"</span>;
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8Fgetelement-%E3%81%A8-classlist">●getElement と classList</h3>
+<p>classList は HTML 要素の class 属性を扱うもので、<br>
+クラスの追加・除去といった処理をメソッドによって実行できます。</p>
+<blockquote>
+<p>classList.add() ：クラスを追加する<br>
+classList.remove() ：クラスを削除する<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 3</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、表示された結果を確認しましょう。<br>
+</div>
+<p>[HTML]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"c1"</span>&gt;</span>text1<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"c2"</span>&gt;</span>text2<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</div></code></pre>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-class">.c1</span> {
+  <span class="hljs-attribute">background-color</span>: tomato;
+}
+<span class="hljs-selector-class">.c2</span> {
+  <span class="hljs-attribute">background-color</span>: orange;
+}
+<span class="hljs-selector-class">.fsize</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;
+}
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">let</span> cl1 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"1"</span>);
+cl1.classList.add(<span class="hljs-string">"fsize"</span>);
+
+<span class="hljs-keyword">let</span> cl2 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"2"</span>);
+cl2.classList.remove(<span class="hljs-string">"c2"</span>);
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E8%A6%81%E7%B4%A0%E3%81%A8%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%81%AE%E7%94%9F%E6%88%90">● 要素とドキュメントの生成</h3>
+<blockquote>
+<p>createElement()：要素を新たに作成する。()にはタグ名を指定<br>
+appendChild()：子要素を新たに作成する。()にはタグ名を指定<br>
+insertBefore()：要素を挿入する。()にはオブジェクト名と挿入先の要素を指定<br></p>
+</blockquote>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 4</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、表示された結果を確認しましょう。<br>
+</div>
+<p>[HTML]</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//bodyタグの子要素に h1タグ「Title」を追加</span>
+<span class="hljs-keyword">let</span> h1_title = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"h1"</span>);
+h1_title.textContent = <span class="hljs-string">"Title"</span>;
+<span class="hljs-built_in">document</span>.body.appendChild(h1_title);
+
+<span class="hljs-comment">//bodyタグの子要素に pタグ「Hello」を追加</span>
+<span class="hljs-keyword">const</span> p_hello = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"p"</span>);
+p_hello.textContent = <span class="hljs-string">"Hello"</span>;
+<span class="hljs-built_in">document</span>.body.appendChild(p_hello);
+
+<span class="hljs-comment">//h1タグと pタグの間に「Sub-Title」を挿入</span>
+<span class="hljs-keyword">const</span> h2_subtitle = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"h2"</span>);
+h2_subtitle.textContent = <span class="hljs-string">"Sub Title"</span>;
+<span class="hljs-built_in">document</span>.body.insertBefore(h2_subtitle, p_hello);
+</div></code></pre>
+<p>[CSS]</p>
+<pre class="hljs"><code><div><span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">3px</span> dashed magenta;
+}
+<span class="hljs-selector-tag">p</span> {
+  <span class="hljs-attribute">color</span>: crimson;
+  <span class="hljs-attribute">background-color</span>: palegreen;
+}
+</div></code></pre>
+<br>
+<h1 id="4-dom-2">4. DOM (2)</h1>
+<h3 id="%E2%97%8F-%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AE%E6%93%8D%E4%BD%9C">● フォームの操作</h3>
+<p>テキストボックスやチェックボックスのメソッドについて学習します。</p>
+<blockquote>
+<p>focus()：テキストボックスをアクティブにする<br>
+checked()：ラジオボタンやチェックボックスのチェック有無を取得<br></p>
+</blockquote>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、表示された結果を確認しましょう。
+</div>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--テキストボックスとボタンの作成--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myTextField"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"テキスト"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"focusMethod()"</span>&gt;</span>フォーカス<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//テキストボックスにカーソルを移動させる</span>
+focusMethod = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFocus</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"myTextField"</span>).focus();
+};
+</div></code></pre>
+<br>
+<p>[html]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--チェックボックスとボタンの作成--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"form1"</span> <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">"return check()"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"check1"</span> /&gt;</span> チェックしてください<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"送信"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</div></code></pre>
+<p><br><br></p>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//チェックの有無でメッセージの表示を切り替える</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">check</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> flag = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">document</span>.form1.check1.checked) {
+    flag = <span class="hljs-number">1</span>;
+  }
+  <span class="hljs-keyword">if</span> (flag) {
+    <span class="hljs-built_in">window</span>.alert(<span class="hljs-string">"チェックされていません"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">window</span>.alert(<span class="hljs-string">"OK!"</span>);
+    <span class="hljs-comment">//以下 return文はエラー防止のため記述</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+}
+</div></code></pre>
+<br>
+<h3 id="%E2%97%8F-%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%83%AA%E3%82%B9%E3%83%8A%E3%83%BC">● イベントリスナー</h3>
+<blockquote>
+<p>addEventListener()：引数に操作を指定する事で、イベント処理を設定する<br></p>
+</blockquote>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:lightgreen; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">演習 1</span>
+</div>
+<div style="border:2px solid lightgreen; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下のコードを記述し、表示された結果を確認しましょう。
+</div>
+<p>[html]</p>
+<pre class="hljs"><code><div>//ボタンの作成 <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>OK<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</div></code></pre>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//ダブルクリックでイベント処理が発生する</span>
+<span class="hljs-keyword">const</span> button = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"button"</span>);
+button.addEventListener(<span class="hljs-string">"dblclick"</span>, () =&gt; {
+  alert(<span class="hljs-string">"clicked!"</span>);
+});
+</div></code></pre>
+<p><br><br><br></p>
+<h2 id="%E2%97%86-%E7%B7%8F%E5%90%88%E6%BC%94%E7%BF%92">◆ 総合演習</h2>
+<p>ここまで「配列」「オブジェクト」「ユーザ定義関数」「アロー関数」を学習しました。<br>
+これらの理解を深めるため、以下の演習問題に回答しましょう。</p>
+<br>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">総合演習 1</span>
+</div>
+<div style="border:4px solid pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+以下の条件を満たすコードを記述し、実行させましょう。(ヒントは各演習問題を参照)<br>
+<br>
+(1) 変数 numbersに 1～10を格納後、全ての値を2乗し、奇数だけを出力する。<br>
+※ 配列、map、filter、callback関数、アロー関数を使用する。
+<p>(2) 変数 janken にランダム整数を格納し、グー、チョキ、パーを出力させる。<br>
+※ Math メソッド、switch 文を使用する。(switch 文の構造が不明の場合は、検索する事)</p>
+</div>
+<p><br><br></p>
+<div style="height:12px;">
+<span style="margin-left:8px; padding:6px 10px; background:pink; color:black; font-weight:bold;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">総合演習 2</span>
+</div>
+<div style="border:4px solid pink; padding:25px 12px 10px; font-size:0.85em;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;">
+テキスト DOM(1),(2) を読み返し、気になった点や不明点を 1つ以上見つける。<br>
+その後、Googleで該当情報を検索するか、講師に質問する。<br>
+例）DOMの詳細な解説、イベントリスナーの他のメソッド etc...
+</div>
+<p><br><br><br></p>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div>numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>];
+twice = numbers.map(<span class="hljs-function">(<span class="hljs-params">number</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> number * number;
+});
+
+odd = twice.filter(<span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">1</span>;
+});
+<span class="hljs-built_in">console</span>.log(odd);
+</div></code></pre>
+<br>
+<h1 id="%E6%BC%94%E7%BF%92-1-1-%E5%9B%9E%E7%AD%94%E4%BE%8B">演習 1-1 回答例</h1>
+<p>[JavaScript]</p>
+<pre class="hljs"><code><div>rand1 = <span class="hljs-built_in">Math</span>.random();
+rand2 = rand1 * <span class="hljs-number">3</span> + <span class="hljs-number">1</span>;
+janken = <span class="hljs-built_in">Math</span>.floor(rand2);
+
+<span class="hljs-keyword">switch</span> (janken) {
+  <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"グー"</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"チョキ"</span>);
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"パー"</span>);
+    <span class="hljs-keyword">break</span>;
+}
+</div></code></pre>
+<p>今回はここまでです。お疲れ様でした！
+<br></p>
+<p><a href="https://masashi-m.github.io/text_htmlcss_05/">JavaScript 学習テキスト(5)へ</a></p>
+
+</body>
+</html>
